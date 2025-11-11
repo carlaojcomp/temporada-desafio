@@ -1,73 +1,87 @@
-# Welcome to your Lovable project
+# 🏠 Plataforma de Previsão de Preço Dinâmico e Ocupação
 
-## Project info
+Este repositório contém uma aplicação voltada para o **mercado imobiliário de aluguel por temporada**, permitindo que, a partir do cadastro de um imóvel, sejam realizadas **previsões automáticas de preço dinâmico e taxa de ocupação**.  
 
-**URL**: https://lovable.dev/projects/1c41ab32-0c9b-4480-b3ab-de5f0928a093
+A aplicação foi desenvolvida com o objetivo de automatizar a análise de dados e a comunicação entre o sistema e os usuários (proprietários e equipe de captação).
 
-## How can I edit this code?
+---
 
-There are several ways of editing your application.
+## 🚀 Estrutura do Projeto
 
-**Use Lovable**
+A aplicação principal está contida na pasta [`App`](./App), e é composta por diferentes módulos integrados:
 
-Simply visit the [Lovable Project](https://lovable.dev/projects/1c41ab32-0c9b-4480-b3ab-de5f0928a093) and start prompting.
+- **Interface (App)**:  
+  Responsável pelo login, seleção de painel e cadastro de imóveis.  
+  Ao adicionar um imóvel, o sistema abre o arquivo `automacao.json` para configurar a automação de envio.
 
-Changes made via Lovable will be committed automatically to this repo.
+- **API (`precoAPI.py`)**:  
+  Responsável por receber as requisições HTTP do aplicativo e processar os dados enviados pelo formulário.  
+  Essa API se comunica com o módulo de predição.
 
-**Use your preferred IDE**
+- **Módulo de Predição (`previsorPrecos.py`)**:  
+  Realiza as consultas e cálculos de **preço dinâmico** e **previsão de ocupação**, com base nos dados históricos e características dos imóveis.
 
-If you want to work locally using your own IDE, you can clone this repo and push changes. Pushed changes will also be reflected in Lovable.
+- **Automação de E-mails**:  
+  Após a previsão, o sistema envia automaticamente:
+  - Um e-mail para o **time de captação**, notificando o novo imóvel e suas previsões.  
+  - Um e-mail para o **proprietário**, contendo o preço ajustado e a taxa de ocupação estimada.
 
-The only requirement is having Node.js & npm installed - [install with nvm](https://github.com/nvm-sh/nvm#installing-and-updating)
+---
 
-Follow these steps:
+## ⚙️ Fluxo de Funcionamento
 
-```sh
-# Step 1: Clone the repository using the project's Git URL.
-git clone <YOUR_GIT_URL>
+1. O usuário faz **login** no aplicativo.
+2. Seleciona o **painel** e clica em **“Adicionar Imóvel”**.
+3. O sistema abre o arquivo `automacao.json`.
+4. O formulário é preenchido com as informações do imóvel.
+5. Ao enviar, é feito um **HTTP Request** para a API (`precoAPI.py`).
+6. A API chama o **modelo de predição** (`previsorPrecos.py`) para calcular:
+   - **Preço dinâmico**.
+   - **Taxa de ocupação**.
+7. Os resultados são enviados por e-mail:
+   - Para o **time de captação**.
+   - Para o **proprietário**.
 
-# Step 2: Navigate to the project directory.
-cd <YOUR_PROJECT_NAME>
+---
 
-# Step 3: Install the necessary dependencies.
-npm i
+## 🧠 Bases de Dados Utilizadas
 
-# Step 4: Start the development server with auto-reloading and an instant preview.
-npm run dev
-```
+As predições são baseadas em dados reais de imóveis e calendários de disponibilidade.  
+Os arquivos de dados podem ser acessados nos links abaixo:
 
-**Edit a file directly in GitHub**
+- **Listings:** [📄 Download aqui](https://drive.google.com/file/d/1-u-IpSv2ASdtdHdE-R8EoVKm9QIj-ZJa/view?usp=drive_link)  
+- **Calendar:** [📅 Download aqui](https://drive.google.com/file/d/1H8jTwhnWEmSjvhl6rnQBVmqB9J5cRylY/view?usp=drive_link)  
+- **Dynamic Prices:** [💰 Download aqui](https://drive.google.com/file/d/13ZotCq7ZJNtadJVQ6lsNHDKfht1Ief18/view?usp=drive_link)
 
-- Navigate to the desired file(s).
-- Click the "Edit" button (pencil icon) at the top right of the file view.
-- Make your changes and commit the changes.
+---
 
-**Use GitHub Codespaces**
+## 🎥 Demonstração em Vídeo
 
-- Navigate to the main page of your repository.
-- Click on the "Code" button (green button) near the top right.
-- Select the "Codespaces" tab.
-- Click on "New codespace" to launch a new Codespace environment.
-- Edit files directly within the Codespace and commit and push your changes once you're done.
+Assista ao vídeo demonstrativo do funcionamento completo da aplicação:  
+[▶️ **Ver demonstração no Google Drive**](https://drive.google.com/file/d/1zVOwBj3AQY9RE9G_mh0Q4R_fSujk-nGv/view?usp=drive_link)
 
-## What technologies are used for this project?
+---
 
-This project is built with:
+## 🧩 Tecnologias Utilizadas
 
-- Vite
-- TypeScript
-- React
-- shadcn-ui
-- Tailwind CSS
+- **Python 3.11+**
+- **Flask** (para API REST)
+- **Pandas / NumPy** (para manipulação e análise de dados)
+- **Scikit-learn** (para modelos de machine learning)
+- **smtplib / email** (para envio automático de e-mails)
+- **JSON** (para automação e comunicação entre módulos)
 
-## How can I deploy this project?
+---
 
-Simply open [Lovable](https://lovable.dev/projects/1c41ab32-0c9b-4480-b3ab-de5f0928a093) and click on Share -> Publish.
+## 📬 Contato
 
-## Can I connect a custom domain to my Lovable project?
+Para dúvidas, sugestões ou contribuições, entre em contato com o desenvolvedor responsável.  
+📧 **E-mail:** [adicione seu e-mail aqui]  
+🌐 **GitHub:** [carlaojcomp](https://github.com/carlaojcomp)
 
-Yes, you can!
+---
 
-To connect a domain, navigate to Project > Settings > Domains and click Connect Domain.
+**© 2025 - Plataforma de Preço Dinâmico e Ocupação**  
+Desenvolvido com 💡 e Python.
 
-Read more here: [Setting up a custom domain](https://docs.lovable.dev/features/custom-domain#custom-domain)
+Link para o App: https://season-pilot-lite.lovable.app/
