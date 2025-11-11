@@ -1,0 +1,659 @@
+{
+  "name": "automacao",
+  "nodes": [
+    {
+      "parameters": {
+        "operation": "append",
+        "documentId": {
+          "__rl": true,
+          "value": "1t2lQVFdS0s6IykzT2Pz7XY7b1uJLqVd2gokoWtRx-Gg",
+          "mode": "list",
+          "cachedResultName": "Imóvel",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1t2lQVFdS0s6IykzT2Pz7XY7b1uJLqVd2gokoWtRx-Gg/edit?usp=drivesdk"
+        },
+        "sheetName": {
+          "__rl": true,
+          "value": "gid=0",
+          "mode": "list",
+          "cachedResultName": "Página1",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1t2lQVFdS0s6IykzT2Pz7XY7b1uJLqVd2gokoWtRx-Gg/edit#gid=0"
+        },
+        "columns": {
+          "mappingMode": "defineBelow",
+          "value": {
+            "room_type": "={{ $('On form submission').item.json['Tipo de Sala'] }}",
+            "accommodates": "={{ $('On form submission').item.json['Número máximo de pessoas suportado'] }}",
+            "bedrooms": "={{ $('On form submission').item.json['Número de Quartos'] }}",
+            "bathrooms": "={{ $('On form submission').item.json['Número de Banheiros'] }}",
+            "beds": "={{ $('On form submission').item.json['Número de Camas'] }}",
+            "neighbourhood_cleansed": "={{ $('On form submission').item.json.Bairro }}",
+            "date_numeric": "={{ $('On form submission').item.json['Data da Reserva'] }}",
+            "e-mail": "={{ $('On form submission').item.json['e-mail (Gmail)'] }}",
+            "CEP": "={{ $('On form submission').item.json.CEP }}",
+            "Número": "={{ $('On form submission').item.json['Número'] }}",
+            "Complemento": "={{ $('On form submission').item.json['Complemento (Digite apenas o nome da torre e o apartamento ou o número da casa)'] }}"
+          },
+          "matchingColumns": [],
+          "schema": [
+            {
+              "id": "room_type",
+              "displayName": "room_type",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "accommodates",
+              "displayName": "accommodates",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "bedrooms",
+              "displayName": "bedrooms",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "bathrooms",
+              "displayName": "bathrooms",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "beds",
+              "displayName": "beds",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "neighbourhood_cleansed",
+              "displayName": "neighbourhood_cleansed",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "date_numeric",
+              "displayName": "date_numeric",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "e-mail",
+              "displayName": "e-mail",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "CEP",
+              "displayName": "CEP",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "Número",
+              "displayName": "Número",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "Complemento",
+              "displayName": "Complemento",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            }
+          ],
+          "attemptToConvertTypes": false,
+          "convertFieldsToString": false
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.googleSheets",
+      "typeVersion": 4.7,
+      "position": [
+        128,
+        32
+      ],
+      "id": "e368d143-a7d3-40e3-bee6-018e71e85d20",
+      "name": "Append row in sheet",
+      "credentials": {
+        "googleSheetsOAuth2Api": {
+          "id": "ulbx84oTDHutJtjN",
+          "name": "Google Sheets account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "https://sherell-postural-alpha.ngrok-free.dev/predict",
+        "sendHeaders": true,
+        "headerParameters": {
+          "parameters": [
+            {
+              "name": "Content-Type",
+              "value": "application/json"
+            }
+          ]
+        },
+        "sendBody": true,
+        "specifyBody": "json",
+        "jsonBody": "={\n    \"room_type\": \"{{ $json.room_type }}\",\n    \"accommodates\": {{ $json.accommodates }},\n    \"bedrooms\": {{ $json.bedrooms }},\n    \"bathrooms\": {{ $json.bathrooms }},\n    \"beds\": {{ $json.beds }},\n    \"neighbourhood_cleansed\": \"{{ $json.neighbourhood_cleansed }}\",\n    \"data\": \"{{ $('On form submission').item.json['Data da Reserva'] }}\"\n}",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.3,
+      "position": [
+        368,
+        -48
+      ],
+      "id": "979e8106-cd3d-4bfb-a276-654a5dbfd93c",
+      "name": "HTTP Request"
+    },
+    {
+      "parameters": {
+        "sendTo": "={{ $('On form submission').item.json['e-mail (Gmail)'] }}",
+        "subject": "Inserção de imóvel e Previsão de Preço da Diária",
+        "emailType": "text",
+        "message": "=Seu imóvel foi cadastrado no sistema. {{ '\\n' }}A previsão do preço ajustado da diária e da ocupação para a data {{ $('On form submission').item.json['Data da Reserva'] }} é: {{ '\\n' }}${{ $json['Preço da diária ($)'] }} e {{ '\\n' }}{{ $json['Ocupação'] }}.",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.gmail",
+      "typeVersion": 2.1,
+      "position": [
+        544,
+        -48
+      ],
+      "id": "00d68f52-aeb8-4c10-b208-9d44f2845546",
+      "name": "Send a message",
+      "webhookId": "d67e24b2-2709-4e09-a22d-0f96bca98d24",
+      "credentials": {
+        "gmailOAuth2": {
+          "id": "suZJ4OpIJkIAh1wa",
+          "name": "Gmail account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "formTitle": "Cadastre seu imóvel no Temporada Lite!",
+        "formDescription": "Coloque as informações do seu imóvel da cidade de Buenos Aires!",
+        "formFields": {
+          "values": [
+            {
+              "fieldLabel": "e-mail (Gmail)",
+              "requiredField": true
+            },
+            {
+              "fieldLabel": "Bairro",
+              "fieldType": "dropdown",
+              "fieldOptions": {
+                "values": [
+                  {
+                    "option": "Palermo"
+                  },
+                  {
+                    "option": "Recoleta"
+                  },
+                  {
+                    "option": "San Nicolas"
+                  },
+                  {
+                    "option": "Belgrano"
+                  },
+                  {
+                    "option": "Almagro"
+                  },
+                  {
+                    "option": "Retiro"
+                  },
+                  {
+                    "option": "Monserrat"
+                  },
+                  {
+                    "option": "Balvanera"
+                  },
+                  {
+                    "option": "Villa Crespo "
+                  },
+                  {
+                    "option": "San Telmo"
+                  },
+                  {
+                    "option": "Colegiales"
+                  },
+                  {
+                    "option": "Nuñez"
+                  },
+                  {
+                    "option": "Caballito"
+                  },
+                  {
+                    "option": "Chacarita"
+                  },
+                  {
+                    "option": "Constitucion"
+                  },
+                  {
+                    "option": "Villa Urquiza"
+                  },
+                  {
+                    "option": "Puerto Madero"
+                  },
+                  {
+                    "option": "Barracas"
+                  },
+                  {
+                    "option": "Saavedra"
+                  },
+                  {
+                    "option": "San Cristobal"
+                  },
+                  {
+                    "option": "Flores"
+                  },
+                  {
+                    "option": "Boca"
+                  },
+                  {
+                    "option": "Villa Ortuzar"
+                  },
+                  {
+                    "option": "Coghlan"
+                  },
+                  {
+                    "option": "Boedo"
+                  },
+                  {
+                    "option": "Villa Del Parque"
+                  },
+                  {
+                    "option": "Villa Devoto"
+                  }
+                ]
+              },
+              "requiredField": true
+            },
+            {
+              "fieldLabel": "CEP",
+              "fieldType": "number",
+              "requiredField": true
+            },
+            {
+              "fieldLabel": "Número",
+              "fieldType": "number",
+              "requiredField": true
+            },
+            {
+              "fieldLabel": "Complemento (Digite apenas o nome da torre e o apartamento ou: Casa e número da casa)",
+              "requiredField": true
+            },
+            {
+              "fieldLabel": "Data da Reserva",
+              "fieldType": "date",
+              "requiredField": true
+            },
+            {
+              "fieldLabel": "Tipo de Sala",
+              "fieldType": "dropdown",
+              "fieldOptions": {
+                "values": [
+                  {
+                    "option": "Entire home/apt"
+                  },
+                  {
+                    "option": "Private room"
+                  },
+                  {
+                    "option": "Shared room"
+                  },
+                  {
+                    "option": "Hotel room"
+                  }
+                ]
+              },
+              "requiredField": true
+            },
+            {
+              "fieldLabel": "Número de Quartos",
+              "fieldType": "number",
+              "requiredField": true
+            },
+            {
+              "fieldLabel": "Número máximo de pessoas suportado",
+              "fieldType": "number",
+              "requiredField": true
+            },
+            {
+              "fieldLabel": "Número de Banheiros",
+              "fieldType": "number",
+              "requiredField": true
+            },
+            {
+              "fieldLabel": "Número de Camas",
+              "fieldType": "number",
+              "requiredField": true
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.formTrigger",
+      "typeVersion": 2.3,
+      "position": [
+        -480,
+        32
+      ],
+      "id": "0e02de5e-e886-47aa-912a-83fdc7edfab7",
+      "name": "On form submission",
+      "webhookId": "af4d5671-cb72-4873-86a6-dcd7ca5571c2"
+    },
+    {
+      "parameters": {
+        "errorMessage": "Tente Novamente! Este registro já existe"
+      },
+      "type": "n8n-nodes-base.stopAndError",
+      "typeVersion": 1,
+      "position": [
+        32,
+        -96
+      ],
+      "id": "c3ea3a72-1b3e-4c39-994a-b72309c3a102",
+      "name": "Stop and Error"
+    },
+    {
+      "parameters": {
+        "documentId": {
+          "__rl": true,
+          "value": "1t2lQVFdS0s6IykzT2Pz7XY7b1uJLqVd2gokoWtRx-Gg",
+          "mode": "list",
+          "cachedResultName": "Imóvel",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1t2lQVFdS0s6IykzT2Pz7XY7b1uJLqVd2gokoWtRx-Gg/edit?usp=drivesdk"
+        },
+        "sheetName": {
+          "__rl": true,
+          "value": "gid=0",
+          "mode": "list",
+          "cachedResultName": "Página1",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1t2lQVFdS0s6IykzT2Pz7XY7b1uJLqVd2gokoWtRx-Gg/edit#gid=0"
+        },
+        "filtersUI": {
+          "values": [
+            {
+              "lookupColumn": "e-mail",
+              "lookupValue": "={{ $json['e-mail (Gmail)'] }} "
+            },
+            {
+              "lookupColumn": "CEP",
+              "lookupValue": "={{ $json.CEP }}"
+            },
+            {
+              "lookupColumn": "neighbourhood_cleansed",
+              "lookupValue": "={{ $json.Bairro }}"
+            },
+            {
+              "lookupColumn": "Número",
+              "lookupValue": "={{ $json['Número'] }}"
+            },
+            {
+              "lookupColumn": "Complemento",
+              "lookupValue": "={{ $json['Complemento (Digite apenas o nome da torre e o apartamento ou: Casa e número da casa)'] }}"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.googleSheets",
+      "typeVersion": 4.7,
+      "position": [
+        -304,
+        32
+      ],
+      "id": "df899ab6-80c9-4cb0-b3b2-953dd91ee8fe",
+      "name": "Get row(s) in sheet",
+      "alwaysOutputData": true,
+      "credentials": {
+        "googleSheetsOAuth2Api": {
+          "id": "ulbx84oTDHutJtjN",
+          "name": "Google Sheets account"
+        }
+      },
+      "onError": "continueRegularOutput"
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "options": {
+            "caseSensitive": true,
+            "leftValue": "",
+            "typeValidation": "strict",
+            "version": 2
+          },
+          "conditions": [
+            {
+              "id": "b23eaf96-42ee-478d-b00b-1665b11063f7",
+              "leftValue": "={{ $('On form submission').item.json['e-mail (Gmail)'] }}",
+              "rightValue": "={{ $json['e-mail'] }}",
+              "operator": {
+                "type": "string",
+                "operation": "equals",
+                "name": "filter.operator.equals"
+              }
+            },
+            {
+              "id": "0ed02dd1-0db6-4f63-bdbe-4d640ed0f8ba",
+              "leftValue": "={{ $('On form submission').item.json.Bairro }}",
+              "rightValue": "={{ $json.neighbourhood_cleansed }}",
+              "operator": {
+                "type": "string",
+                "operation": "equals",
+                "name": "filter.operator.equals"
+              }
+            },
+            {
+              "id": "59bfbb24-13e3-4d96-aa9a-c3bdac0d6cbb",
+              "leftValue": "={{ $('On form submission').item.json.CEP }}",
+              "rightValue": "={{ $json.CEP }}",
+              "operator": {
+                "type": "number",
+                "operation": "equals"
+              }
+            },
+            {
+              "id": "08ea77a5-8f56-4d21-aac5-f7d2cb2c9f18",
+              "leftValue": "={{ $('On form submission').item.json['Número'] }}",
+              "rightValue": "={{ $json['Número'] }}",
+              "operator": {
+                "type": "number",
+                "operation": "equals"
+              }
+            },
+            {
+              "id": "40f68d32-fa69-4e83-ae3b-8af254ad6574",
+              "leftValue": "={{ $('On form submission').item.json['Complemento (Digite apenas o nome da torre e o apartamento ou: Casa e número da casa)'] }}",
+              "rightValue": "={{ $json.Complemento }}",
+              "operator": {
+                "type": "string",
+                "operation": "equals",
+                "name": "filter.operator.equals"
+              }
+            },
+            {
+              "id": "930a1769-3a86-46f7-8b2a-e0497721fd6c",
+              "leftValue": "={{ $('On form submission').item.json['Data da Reserva'] }}",
+              "rightValue": "={{ $json['Data da Reserva'] }}",
+              "operator": {
+                "type": "dateTime",
+                "operation": "equals"
+              }
+            }
+          ],
+          "combinator": "and"
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 2.2,
+      "position": [
+        -128,
+        32
+      ],
+      "id": "22f3ae97-dce1-4e5d-b40a-2de25536fea2",
+      "name": "If"
+    },
+    {
+      "parameters": {
+        "sendTo": "santosgabrielaugusto5@gmail.com",
+        "subject": "Notificação de captação de Imóvel",
+        "emailType": "text",
+        "message": "=O usuário de e-mail  {{ $('On form submission').item.json['e-mail (Gmail)'] }}. Inseriu o imóvel: {{ $('On form submission').item.json.Bairro }} {{ '\\n' }}{{ $('On form submission').item.json.CEP }} {{ '\\n' }}{{ $('On form submission').item.json['Número'] }} {{ '\\n' }}{{ $('On form submission').item.json['Complemento (Digite apenas o nome da torre e o apartamento ou: Casa e número da casa)'] }}.",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.gmail",
+      "typeVersion": 2.1,
+      "position": [
+        304,
+        144
+      ],
+      "id": "c68a4399-c0da-4d5b-b038-9168416ce28c",
+      "name": "Send a message1",
+      "webhookId": "1290f34e-ef12-4e7b-9e7a-f4e2e2c8f5e7",
+      "credentials": {
+        "gmailOAuth2": {
+          "id": "suZJ4OpIJkIAh1wa",
+          "name": "Gmail account"
+        }
+      }
+    }
+  ],
+  "pinData": {},
+  "connections": {
+    "Append row in sheet": {
+      "main": [
+        [
+          {
+            "node": "Send a message1",
+            "type": "main",
+            "index": 0
+          },
+          {
+            "node": "HTTP Request",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "HTTP Request": {
+      "main": [
+        [
+          {
+            "node": "Send a message",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "On form submission": {
+      "main": [
+        [
+          {
+            "node": "Get row(s) in sheet",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Get row(s) in sheet": {
+      "main": [
+        [
+          {
+            "node": "If",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        []
+      ]
+    },
+    "If": {
+      "main": [
+        [
+          {
+            "node": "Stop and Error",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Append row in sheet",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Send a message1": {
+      "main": [
+        []
+      ]
+    }
+  },
+  "active": true,
+  "settings": {
+    "executionOrder": "v1"
+  },
+  "versionId": "db88ab5d-5795-43bb-be10-3298ea9a6269",
+  "meta": {
+    "templateCredsSetupCompleted": true,
+    "instanceId": "d1c994a77482d0daf5fa76d8174085dbef5fedbcc082fd3672596ab176fb4300"
+  },
+  "id": "TqOIbVgkKho179i3",
+  "tags": []
+}
