@@ -1,0 +1,139 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Definition of the design system. All colors, gradients, fonts, etc should be defined here. 
+All colors MUST be HSL.
+*/
+
+@layer base {
+  :root {
+    /* Core colors - Professional Real Estate Theme */
+    --background: 0 0% 100%;
+    --foreground: 220 15% 20%;
+
+    --card: 0 0% 100%;
+    --card-foreground: 220 15% 20%;
+
+    --popover: 0 0% 100%;
+    --popover-foreground: 220 15% 20%;
+
+    /* Primary - Ocean Blue (Trust & Professionalism) */
+    --primary: 205 85% 45%;
+    --primary-foreground: 0 0% 100%;
+    --primary-light: 205 85% 60%;
+    --primary-dark: 205 85% 35%;
+
+    /* Secondary - Neutral Gray */
+    --secondary: 220 15% 95%;
+    --secondary-foreground: 220 15% 20%;
+
+    /* Success - Emerald Green (Revenue/Occupancy) */
+    --success: 142 76% 36%;
+    --success-foreground: 0 0% 100%;
+    --success-light: 142 76% 50%;
+
+    /* Warning - Golden Yellow */
+    --warning: 38 92% 50%;
+    --warning-foreground: 220 15% 20%;
+
+    /* Muted colors */
+    --muted: 220 15% 96%;
+    --muted-foreground: 220 10% 45%;
+
+    /* Accent - Light Blue */
+    --accent: 205 85% 92%;
+    --accent-foreground: 205 85% 30%;
+
+    --destructive: 0 84% 60%;
+    --destructive-foreground: 0 0% 100%;
+
+    --border: 220 15% 88%;
+    --input: 220 15% 88%;
+    --ring: 205 85% 45%;
+
+    --radius: 0.75rem;
+
+    /* Gradients */
+    --gradient-primary: linear-gradient(135deg, hsl(205 85% 45%) 0%, hsl(205 85% 60%) 100%);
+    --gradient-success: linear-gradient(135deg, hsl(142 76% 36%) 0%, hsl(142 76% 50%) 100%);
+    --gradient-hero: linear-gradient(135deg, hsl(205 85% 45%) 0%, hsl(142 76% 45%) 100%);
+
+    /* Shadows */
+    --shadow-sm: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
+    --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+    --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+    --shadow-xl: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+
+    --sidebar-background: 0 0% 98%;
+    --sidebar-foreground: 220 15% 30%;
+    --sidebar-primary: 205 85% 45%;
+    --sidebar-primary-foreground: 0 0% 100%;
+    --sidebar-accent: 220 15% 95%;
+    --sidebar-accent-foreground: 220 15% 30%;
+    --sidebar-border: 220 15% 88%;
+    --sidebar-ring: 205 85% 45%;
+  }
+
+  .dark {
+    --background: 220 20% 10%;
+    --foreground: 220 15% 90%;
+
+    --card: 220 20% 14%;
+    --card-foreground: 220 15% 90%;
+
+    --popover: 220 20% 14%;
+    --popover-foreground: 220 15% 90%;
+
+    --primary: 205 85% 55%;
+    --primary-foreground: 220 20% 10%;
+    --primary-light: 205 85% 65%;
+    --primary-dark: 205 85% 45%;
+
+    --secondary: 220 20% 18%;
+    --secondary-foreground: 220 15% 90%;
+
+    --success: 142 76% 45%;
+    --success-foreground: 0 0% 100%;
+    --success-light: 142 76% 55%;
+
+    --warning: 38 92% 55%;
+    --warning-foreground: 220 20% 10%;
+
+    --muted: 220 20% 18%;
+    --muted-foreground: 220 15% 60%;
+
+    --accent: 220 20% 18%;
+    --accent-foreground: 205 85% 60%;
+
+    --destructive: 0 84% 60%;
+    --destructive-foreground: 0 0% 100%;
+
+    --border: 220 20% 22%;
+    --input: 220 20% 22%;
+    --ring: 205 85% 55%;
+
+    --gradient-primary: linear-gradient(135deg, hsl(205 85% 45%) 0%, hsl(205 85% 60%) 100%);
+    --gradient-success: linear-gradient(135deg, hsl(142 76% 36%) 0%, hsl(142 76% 50%) 100%);
+    --gradient-hero: linear-gradient(135deg, hsl(205 85% 45%) 0%, hsl(142 76% 45%) 100%);
+
+    --sidebar-background: 220 20% 12%;
+    --sidebar-foreground: 220 15% 85%;
+    --sidebar-primary: 205 85% 55%;
+    --sidebar-primary-foreground: 0 0% 100%;
+    --sidebar-accent: 220 20% 18%;
+    --sidebar-accent-foreground: 220 15% 85%;
+    --sidebar-border: 220 20% 20%;
+    --sidebar-ring: 205 85% 55%;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+
+  body {
+    @apply bg-background text-foreground;
+  }
+}
